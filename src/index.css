@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased bg-editor-bg dark:bg-editor-bg-dark text-editor-text dark:text-editor-text-dark;
+    font-family: 'Inter', sans-serif;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Shiki styles */
+  :root {
+    --shiki-color-text: theme('colors.editor-text.DEFAULT');
+    --shiki-color-background: transparent;
+    --shiki-token-constant: theme('colors.editor-accent.DEFAULT');
+    --shiki-token-string: theme('colors.editor-string.DEFAULT');
+    --shiki-token-comment: theme('colors.editor-comment.DEFAULT');
+    --shiki-token-keyword: theme('colors.editor-keyword.DEFAULT');
+    --shiki-token-parameter: theme('colors.editor-text.DEFAULT');
+    --shiki-token-function: theme('colors.editor-accent.DEFAULT');
+    --shiki-token-string-expression: theme('colors.editor-string.DEFAULT');
+    --shiki-token-punctuation: theme('colors.editor-muted.DEFAULT');
+    --shiki-token-link: theme('colors.editor-accent.DEFAULT');
+  }
+
+  .dark {
+    --shiki-color-text: theme('colors.editor-text-dark.DEFAULT');
+    --shiki-token-constant: theme('colors.editor-accent-dark.DEFAULT');
+    --shiki-token-string: theme('colors.editor-string-dark.DEFAULT');
+    --shiki-token-comment: theme('colors.editor-comment-dark.DEFAULT');
+    --shiki-token-keyword: theme('colors.editor-keyword-dark.DEFAULT');
+    --shiki-token-parameter: theme('colors.editor-text-dark.DEFAULT');
+    --shiki-token-function: theme('colors.editor-accent-dark.DEFAULT');
+    --shiki-token-string-expression: theme('colors.editor-string-dark.DEFAULT');
+    --shiki-token-punctuation: theme('colors.editor-muted-dark.DEFAULT');
+    --shiki-token-link: theme('colors.editor-accent-dark.DEFAULT');
+  }
+
+  .shiki {
+    @apply bg-transparent !important;
+  }
+}
+
+@layer components {
+  .terminal-card {
+    @apply bg-editor-sidebar dark:bg-editor-sidebar-dark border border-editor-highlight dark:border-editor-highlight-dark rounded-lg overflow-hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .terminal-header {
+    @apply flex items-center px-4 py-2 bg-editor-highlight dark:bg-editor-highlight-dark border-b border-editor-highlight dark:border-editor-highlight-dark;
+  }
+
+  .terminal-dots {
+    @apply flex gap-2;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .terminal-dot-red {
+    @apply bg-[#FF5F56];
+  }
+
+  .terminal-dot-yellow {
+    @apply bg-[#FFBD2E];
+  }
+
+  .terminal-dot-green {
+    @apply bg-[#27C93F];
+  }
+
+  .tech-label {
+    @apply inline-flex items-center px-2 py-1 rounded text-xs font-mono bg-editor-highlight dark:bg-editor-highlight-dark text-editor-muted dark:text-editor-muted-dark;
+  }
+
+  .tab-nav {
+    @apply flex gap-1 p-1 bg-editor-sidebar dark:bg-editor-sidebar-dark rounded-lg;
+  }
+
+  .tab-item {
+    @apply px-4 py-2 rounded-md transition-colors duration-200 font-mono text-editor-muted dark:text-editor-muted-dark hover:text-editor-text dark:hover:text-editor-text-dark hover:bg-editor-highlight dark:hover:bg-editor-highlight-dark;
+  }
+
+  .tab-item.active {
+    @apply bg-editor-highlight dark:bg-editor-highlight-dark text-editor-text dark:text-editor-text-dark;
+  }
+
+  .syntax-gradient {
+    @apply bg-gradient-to-br from-editor-bg to-editor-sidebar dark:from-editor-bg-dark dark:to-editor-sidebar-dark;
+  }
+
+  .module-card {
+    @apply transition-all duration-300;
+    background: linear-gradient(to bottom right, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .module-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .command-input {
+    @apply bg-editor-bg dark:bg-editor-bg-dark border border-editor-highlight dark:border-editor-highlight-dark rounded-lg px-4 py-2 font-mono;
+  }
+
+  pre {
+    @apply bg-editor-bg dark:bg-editor-bg-dark text-editor-text dark:text-editor-text-dark p-4 rounded-lg overflow-x-auto;
+  }
+
+  code {
+    @apply font-mono text-editor-text dark:text-editor-text-dark;
+  }
+}
